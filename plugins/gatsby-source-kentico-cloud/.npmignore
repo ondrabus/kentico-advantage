@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But descend into directories
+
+# Recursively allow files under subtree¨
+!gatsby-node.js
+!normalize.js
+!package.json
+!.npmignore
+!README.md

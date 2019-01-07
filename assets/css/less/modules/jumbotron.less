@@ -1,0 +1,135 @@
+
+.jumbotron
+{
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	min-height: 220px;
+}
+
+.jumbotron-homepage
+{
+	background-image: url("../assets/img/jumbotron/01.jpg");
+	background-size: cover;
+}
+
+.jumbotron-content-page
+{
+	padding: 70px 0 10px;
+	min-height: 50px;
+}
+.jumbotron.gathering
+{
+	background: #538e45;
+}
+.jumbotron.search,
+.jumbotron.conclusion
+{
+	background: #424896;
+}
+.jumbotron.planning
+{
+	background: #134d86;
+}
+.jumbotron.developing
+{
+	background: #a97a3c;
+}
+.jumbotron.testing
+{
+	background: #de3438;
+}
+.jumbotron.deploying
+{
+	background: #696663;
+}
+.jumbotron.maintaining
+{
+	background: #2794cf;
+}
+.jumbotron.conclusion,
+.jumbotron.search-results
+{
+	background: #424896;
+}
+
+.jumbotron section
+{
+	margin: 32px 0 16px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+
+.jumbotron h1
+{
+	color: @jumbotron-heading-foreground;
+	background: @jumbotron-heading-background;
+	font-size: 1.8em;
+	line-height: 1.1em;
+	font-weight: 300;
+	padding: 10px 16px;
+}
+
+.jumbotron-content-page h1
+{
+	color: @jumbotron-content-heading-foreground;
+	background: @jumbotron-content-heading-background;
+}
+
+
+.jumbotron p
+{
+	color: @jumbotron-paragraph-foreground;
+	background: @jumbotron-paragraph-background;
+	padding: 16px;
+	line-height: 1.25em;
+}
+
+@media screen and (min-width: @sm)
+{
+	.jumbotron
+	{
+		min-height: 380px;
+		align-items: flex-end;
+		flex-direction: row;
+	}
+	.jumbotron-content-page
+	{
+		min-height: auto;
+		padding-bottom: 30px;
+	}
+	
+	.jumbotron section
+	{
+		align-items: flex-start;
+		margin: 32px 10px 16px;
+	}
+	
+	.jumbotron h1
+	{
+		font-size: 3.2em;
+		padding: 10px 20px;
+	}
+	
+	.jumbotron p
+	{
+		line-height: 1.5em;
+		padding: 20px;
+	}
+}
+@media screen and (min-width: @md)
+{
+	.jumbotron
+	{
+		margin-top: 60px;
+	}
+	.jumbotron section
+	{
+		margin: 32px 16px 16px;
+	}
+}

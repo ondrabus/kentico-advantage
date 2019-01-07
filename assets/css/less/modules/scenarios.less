@@ -1,0 +1,76 @@
+
+.scenarios ul, ul.scenarios
+{
+	list-style-type: none;
+	margin: 0;
+}
+
+.scenarios ul li, ul.scenarios li
+{
+	background: @scenarios-background;
+	border-bottom: 1px solid @scenarios-bottom-border;
+	padding: 10px 20px;
+	display: block;
+}
+.scenarios ul li::before, ul.scenarios li::before
+{
+	display: none;
+	content: none;
+}
+
+.scenarios h3
+{
+	margin: -10px -20px;
+}
+
+.scenarios h3 a
+{
+	padding: 10px 20px;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	text-decoration: none;
+	color: @heading-foreground;
+}
+.scenarios h3 a:hover,
+.scenarios h3 a.open
+{
+	background: @scenarios-selected-background;
+}
+.scenarios h3 a::before
+{
+	color: @scenarios-plus-foreground;
+	font-size: 1.6em;
+	padding-right: 20px;
+	align-self: center;
+	flex: 0 0 20px;
+	text-align: center;
+}
+.scenarios h3 a.closed::before
+{
+	content: "+";
+}
+.scenarios h3 a.open::before
+{
+	content: "-";
+}
+.scenarios,
+.scenarios ul
+{
+	color: @zone-content-foreground;
+}
+.scenarios .visible
+{
+	margin: 20px 0 10px;
+}
+@media screen and (min-width: @sm){
+	.scenarios .visible
+	{
+		margin-left: 40px;
+	}
+}
+
+.zone ul.scenarios
+{
+	margin-bottom: 20px;
+}

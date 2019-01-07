@@ -1,0 +1,61 @@
+
+.form
+{
+	color: @jumbotron-content-heading-foreground;
+	line-height: 1.1em;
+	font-weight: 300;
+	padding: 10px 20px;
+	display: flex;
+	align-items: baseline;
+}
+
+.form label
+{
+	font-size: 2em;
+	white-space: nowrap;
+	padding-right: 10px;
+}
+
+.form input[type=text]
+{
+	font-weight: bold;
+	display: inline-block;
+	border: 0;
+	border-bottom: 2px solid #9196cd;
+	padding: 0 0 0 10px;
+	background: transparent;
+	font-size: 2em;
+	color: #fff;
+	font-family: 'Source Sans Pro', sans-serif;
+	min-width: 0;
+	width: 100%;
+	
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+.form input:focus
+{
+	outline: none;
+	border-color: #fff;
+}
+
+@media screen and (min-width: @sm)
+{
+	.form label, .form input[type=text]
+	{
+		font-size: 3.2em;
+	}
+}
+
+.zone a h2
+{
+	color: @a-foreground;
+}
+.zone a:hover
+{
+	text-decoration: none;
+}
+.zone a:hover h2
+{
+	color: @a-hover-foreground;
+}

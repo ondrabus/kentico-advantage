@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 2.0.85"/><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer', 'GTM-NRNTQFM');</script><link as="script" rel="preload" href="/1-bda4a0e3255dec32b18f.js"/><link as="script" rel="preload" href="/component---src-templates-phase-js-3ecb47f5172f7078987a.js"/><link as="script" rel="preload" href="/0-cbe8c1358298bf9b6d11.js"/><link as="script" rel="preload" href="/app-66da9861fa444c49d4ab.js"/><link as="script" rel="preload" href="/webpack-runtime-6401575ffe454c8c8168.js"/><link as="fetch" rel="preload" href="/static/d/692/path---deploying-79-c-3d6-ZNznjSA31dgfZQREiPiBHlOwY.json" crossOrigin="use-credentials"/></head><body><noscript><iframe
+  src="https://www.googletagmanager.com/ns.html?id=GTM-NRNTQFM"
+  height="0"
+  width="0"
+  style="display: none; visibility: hidden"
+></iframe></noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="sc-iwsKbI cnqjLb"><div class="sc-bwzfXH edQYlx"><div class="sc-htpNat jHCiua"><a href="javascript:;" title="Open menu" class="left-bar-button"><i class="fa fa-bars"></i></a></div><div class="sc-bxivhb hRliyX"><div><a href="javascript:;" title="Search"><i class="fa fa-search"></i></a></div></div></div><div class="open sc-ifAKCX bghsAn"><div class="sc-EHOje bimlBu"><form action="/search" method="get"><input type="text" name="s"/><input type="submit" value=""/></form></div></div><div class="closed sc-bZQynM closed ldEPIu"><div class="close"><a href="javascript:;" title="Close" class="left-bar-button"><i class="fa fa-times"></i></a></div><header><a href="/"><img src="/assets/img/kentico_rgb_small.png" alt="Kentico Advantage"/></a></header><nav><ul><li>Project phases<ul><li><a class="" title="Gathering" href="/gathering">Gathering</a></li><li><a class="" title="Planning" href="/planning">Planning</a></li><li><a class="" title="Developing" href="/developing">Developing</a></li><li><a class="" title="Testing" href="/testing">Testing</a></li><li><a aria-current="page" class="active" title="Deploying" href="/deploying">Deploying</a></li><li><a class="" title="Maintaining" href="/maintaining">Maintaining</a></li></ul></li><li><a title="Conclusion" href="/conclusion">Conclusion</a><ul></ul></li></ul></nav><div class="sc-gzVnrw bZnNMl"><a href="https://kenticocloud.com"><img src="../assets/img/powered-by-kc@1x.png" alt="KC"/></a></div></div><div class="sc-htoDjs fCqlmS"><nav class="sc-VigVT iOQMko"><a title="Introduction" href="/">Introduction</a><a title="Project phases" href="/">Project phases</a><a aria-current="page" title="Deploying" class="" href="/deploying">Deploying</a></nav><main><div class="jumbotron-content-page gray sc-gZMcBi pVAWW"><h1>Deploying</h1></div><section class="highlighted sc-gqjmRU lmECZm"><span><p>Deployment is one of the most crucial steps in a project's lifecycle. You will deploy continuously throughout the life of a project. Most think about deployment in terms of production, but it also includes local, integration, staging, and testing environments. This section provides an overview of the process of deploying your solution from one environment to another and includes the basic approaches, available tools, and steps to deploy.</p></span></section><section class="right-zone sc-gqjmRU lmECZm"><div class="icon sc-jzJRlG hwbnie"><img src="https://assets-us-01.kc-usercontent.com:443/c1b57fce-743a-0048-c4ee-4f8c42ea3ab8/c8d74e8f-deb6-4643-bf2b-4e0734d51e7c/icon-deploying.svg" alt="Deploying"/></div><div class="sc-jTzLTM jSNFLx"><p>On this page:</p><ol><li><a href="#h0" title="Deployment approaches">Deployment approaches</a></li><li><a href="#h1" title="Deployment tools">Deployment tools</a></li><li><a href="#h2" title="Deployment process">Deployment process</a></li></ol></div></section><section class="sc-gqjmRU lmECZm"><div><h2 id="h0">Deployment approaches</h2>
+<p>The first part of deployment to consider is the deployment method. The approach you take depends on a number of factors such as the nature of the changes, project resources, team size, project type, as well as the source and target environments.<br>
+<br>
+There are two basic approaches:&nbsp;<strong>manual</strong>&nbsp;and&nbsp;<strong>automatic&nbsp;</strong>deployment. In some scenarios you might&nbsp;<strong>combine&nbsp;</strong>these approaches and manually deploy a subset of the changes and automatically deploy the rest.</p>
+<ul>
+  <li>Manual deployment for code generally means copying files via FTP or over a network. For manual deployment of database changes, that means duplicating the changes manually or running SQL scripts manually.</li>
+  <li>Automated deployment of code can be done with build and deployment servers or services. Database changes may also be deployed this way, but may also be handled through built-in&nbsp;<a href="https://docs.kentico.com/k12/configuring-kentico/setting-up-web-farms">web farm</a>&nbsp;features.</li>
+</ul>
+<p>Regardless of the deployment mechanism, you need to determine&nbsp;<strong>who&nbsp;</strong>will be responsible for deploying changes. This may be a certain person or group for one set of changes and a different group for another set of changes.<br>
+<br>
+Alternately, you might make a server or service responsible for it. If this is the case, assign someone to monitor that. Who is responsible might also depend on the target environment.<br>
+<br>
+Finally, the responsible party needs to know&nbsp;<strong>when&nbsp;</strong>to deploy. You might schedule a change for some maintenance window or push it immediately. Ideally, all of this is determined in advance and there are rules in place to prevent conflicts and ensure that if a deployment goes wrong, you know who to talk to.</p>
+<h2 id="h1">Deployment tools</h2>
+<p>Kentico provides two means of deploying out of the box:</p>
+<ul>
+  <li>The content&nbsp;<a href="https://docs.kentico.com/k12/deploying-websites/content-staging">staging</a>&nbsp;feature supports media files and&nbsp;<a href="https://docs.kentico.com/k12/deploying-websites/content-staging#Contentstaging-Whatcanbesynchronized">certain database objects</a>, but not code files.</li>
+  <li>The&nbsp;<a href="https://docs.kentico.com/k12/deploying-websites/exporting-and-importing-sites">export and import</a>&nbsp;feature supports media files and&nbsp;<a href="https://docs.kentico.com/k12/deploying-websites/exporting-and-importing-sites/export-folder-structure">certain code files</a>&nbsp;(typically only suitable for web site projects) and&nbsp;<a href="https://docs.kentico.com/k12/deploying-websites/exporting-and-importing-sites/exporting-objects">certain database objects</a>.</li>
+</ul>
+<p>There are lots of third party tools that can be helpful for deployment, such as&nbsp;<a href="http://www.bizstreamtoolkit.com/">Compare for Kentico</a>, TeamCity, Web Deploy, Redgate SQL Compare, Octopus Deploy, and many others.<br>
+<br>
+The following table provides a summary of tools you can use to synchronize code, media files and database objects.</p>
+<table><tbody>
+  <tr><td>Kentico feature</td><td>Media files</td><td>Code</td><td>Database objects</td></tr>
+  <tr><td class="lightgray"><a href="https://docs.kentico.com/k12/deploying-websites/content-staging">Content staging</a></td><td class="green">Supported</td><td class="red">Not supported</td><td class="yellow"><a href="https://docs.kentico.com/k12/deploying-websites/content-staging#Contentstaging-Whatcanbesynchronized">Certain objects</a></td></tr>
+  <tr><td class="lightgray"><a href="https://docs.kentico.com/k12/deploying-websites/exporting-and-importing-sites">Export / Import</a></td><td class="green">Supported</td><td class="yellow"><a href="https://docs.kentico.com/k12/deploying-websites/exporting-and-importing-sites/export-folder-structure">Supported objects</a><br>
+<br>
+Note: Suitable only for the web site project.</td><td class="yellow"><a href="https://docs.kentico.com/k12/deploying-websites/exporting-and-importing-sites/exporting-objects">Certain objects</a><br>
+<br>
+Note: Not designed for incremental deployment of pages.</td></tr>
+</tbody></table>
+<table><tbody>
+  <tr><td>3rd party tools</td><td>Note</td></tr>
+  <tr><td class="lightgray">e.g., TeamCity, FTP, WebDeploy,<br>
+Visual Studio, Redgate SQL Data Compare</td><td class="yellow">Tool dependent<br>
+<br>
+Note: In case you work with a web site project type, you can deploy individual code files as opposed when you have a web application or pre-compiled web site where you need to deploy a whole project at once.</td></tr>
+</tbody></table>
+<h2 id="h2">Deployment process</h2>
+<p>Before you start deploying to any environment, spend some time preparing to eliminate possible issues. The following list of tasks should help you understand the types of things to check:</p>
+<ul>
+  <li>Run&nbsp;<a href="https://github.com/Kentico/KInspector">KInspector</a>&nbsp;and consider the displayed recommendations.</li>
+  <li>Disable features not in use to avoid consuming unnecessary resources (e.g., scheduled tasks, REST module).</li>
+  <li>Check your environment specific configuration (e.g. web.config, application settings).
+    <ul>
+      <li>Disable debug, enable caching, validate CDN settings, disable unnecessary logging (e.g., content staging), etc.</li>
+    </ul>
+  </li>
+  <li>Determine objects to synchronize.
+    <ul>
+      <li>Consider using&nbsp;<a href="http://www.bizstreamtoolkit.com/">Compare for Kentico</a>&nbsp;to help identify differences between your Kentico instances in different environments.</li>
+      <li>Filter out or remove unwanted objects from deployment (e.g., do not select objects starting with "test_" prefix or objects stored in a "test" folder).</li>
+      <li>Validate that all dependencies are included.</li>
+    </ul>
+  </li>
+  <li>Prepare your deployment package(s).
+    <ul>
+      <li>Consider including&nbsp;<a href="https://docs.kentico.com/k12/deploying-websites/publishing-projects-from-visual-studio#PublishingprojectsfromVisualStudio-Precompilingwebsites">precompilation</a>&nbsp;to improve the performance and reduce time to first page load after deployment.</li>
+    </ul>
+  </li>
+  <li>Test the deployment prior to synchronizing.
+    <ul>
+      <li>Be aware that the built-in deployment features do not support a bulk roll-back in case of failed deployment.</li>
+    </ul>
+  </li>
+  <li>Back up the target environment to provide a way to recover in the event of something going wrong.</li>
+  <li>Plan the order that things are synchronized in (e.g., code then database objects or vice-versa).
+    <ul>
+      <li>You want to deploy the code first in most of the cases.</li>
+    </ul>
+  </li>
+  <li>Prepare a maintenance message when deploying with a downtime (e.g., Kentico offline mode or App_Offline.html file).</li>
+</ul>
+<p>During the deployment, monitor the environment (e.g., CPU, RAM, and disk utilization), the application (e.g., event log errors), and take appropriate action when something goes amiss. After the deployment, verify and test that the deployment was successful.</p></div></section><section class="sc-gqjmRU lmECZm"><div class="sc-fjdhpX khJNaF"><ul><li><h3><a class="closed" href="javascript:;">Adding a new section to the site</a></h3></li><li><h3><a class="closed" href="javascript:;">Deploying to multi-tenant environment</a></h3></li><li><h3><a class="closed" href="javascript:;">Going live with a redesigned web site</a></h3></li><li><h3><a class="closed" href="javascript:;">Rolling out a new feature</a></h3></li><li><h3><a class="closed" href="javascript:;">Applying hotfix with no downtime</a></h3></li></ul></div></section></main><div class="sc-dnqmqq dRJXVQ"><p>Copyright © <!-- -->2019<!-- --> Kentico Software. All rights reserved.</p><ul><li><a href="http://www.kentico.com" title="Kentico.com" target="_blank" rel="noopener noreferrer">Kentico main website</a></li></ul></div></div></div><div class="sc-bdVaJa eytLGL"></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-phase-js","jsonName":"deploying-79c","path":"/deploying"};window.dataPath="692/path---deploying-79-c-3d6-ZNznjSA31dgfZQREiPiBHlOwY";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-66da9861fa444c49d4ab.js"],"component---src-templates-phase-js":["/component---src-templates-phase-js-3ecb47f5172f7078987a.js"],"component---src-templates-page-js":["/component---src-templates-page-js-d0b8bae6131989b4c0ab.js"],"component---src-pages-404-js":["/component---src-pages-404-js-fd8243b8bbe95ea3c2db.js"],"component---src-pages-index-js":["/component---src-pages-index-js-6864e1053b0dc3960651.js"],"component---src-pages-search-js":["/component---src-pages-search-js-f58dfa561bbb47b14e70.js"],"pages-manifest":["/pages-manifest-a14f6394ba698dbc2daf.js"]};/*]]>*/</script><script src="/webpack-runtime-6401575ffe454c8c8168.js" async=""></script><script src="/app-66da9861fa444c49d4ab.js" async=""></script><script src="/0-cbe8c1358298bf9b6d11.js" async=""></script><script src="/component---src-templates-phase-js-3ecb47f5172f7078987a.js" async=""></script><script src="/1-bda4a0e3255dec32b18f.js" async=""></script></body></html>

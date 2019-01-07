@@ -1,0 +1,52 @@
+body
+{
+    counter-reset: section;
+}
+
+.project-phases
+{
+}
+
+.project-phases ol
+{
+	list-style-type: none;
+}
+
+.project-phases ol li::before
+{
+	content: "";
+}
+
+.project-phases li a {
+    display: block;
+	text-decoration: none;
+	padding: 24px 0 24px 90px;
+}
+
+.project-phases li
+{
+	margin: -10px;
+    padding: 10px;
+	border-bottom: 1px solid #ececec;
+	background-position: 12px;
+}
+
+.project-phases li:last-child
+{
+	border-bottom:0;
+}
+
+.project-phases ol li
+{
+	margin: 0;
+}
+
+.project-phases li:hover
+{
+    background-color: @project-phases-background;
+}
+
+.project-phases p
+{
+	padding: 0;
+}

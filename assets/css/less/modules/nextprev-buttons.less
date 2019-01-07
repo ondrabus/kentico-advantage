@@ -1,0 +1,42 @@
+
+.nextprev
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.nextprev a
+{
+	padding: 15px 25px;
+	background: @nextprev-button-background;
+	color: @nextprev-button-foreground;
+	width: 110px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.nextprev .prev
+{
+	margin-right: auto;
+}
+
+.nextprev .next
+{
+	margin-left: auto;
+}
+
+.nextprev a:hover
+{
+	color: @nextprev-button-hover-foreground;
+	background: @nextprev-button-hover-background;
+}
+
+@media screen and (min-width: @md)
+{
+	.nextprev
+	{
+		padding-right: 0;
+		margin-right: (20px + 20px + 238px);
+	}
+}	

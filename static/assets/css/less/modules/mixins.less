@@ -1,0 +1,13 @@
+@mixin vertical-align($position) {
+  position:$position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin all-transition($time)
+{
+	transition: all $time;
+	-webkit-transition: all $time;
+}

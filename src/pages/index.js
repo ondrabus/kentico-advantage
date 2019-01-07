@@ -1,0 +1,25 @@
+import React from "react"
+import Layout from "../components/layout"
+import Jumbotron from "../components/jumbotron"
+import Teaser from "../components/teaser"
+import ProjectPhases from "../components/project-phases"
+
+export default () => (
+    <Layout>
+        <main>
+            <Jumbotron
+                className="jumbotron-homepage"
+                header="Kentico Advantage"
+                teaser="Kentico Consulting team created this guide so you can leverage our experience with many different projects to help you avoid pitfalls and address potentially weak places in the project."
+            />
+            
+            <Teaser>
+                <h2>Project phases</h2>
+                <p>We identified six primary phases for Kentico projects. If you follow a waterfall like development approach you'll apply each section in a linear fashion over the course of the project. Alternatively, if you follow an agile approach, you'll do this as of each sprint.</p>
+                <p>Regardless of the approach you take, each phase covers the key concepts and best practices you need to know, presents real-world scenarios to help with application, and provides additional resources related to the section.</p>
+            </Teaser>
+            
+            <ProjectPhases />
+        </main>
+    </Layout>
+)

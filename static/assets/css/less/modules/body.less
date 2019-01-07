@@ -1,0 +1,62 @@
+
+body, html
+{
+	width: 100%;
+	
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.body
+{
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+
+@media screen and (min-width: @md)
+{
+	.body
+	{
+		flex-direction: row;
+	}
+}
+
+.body > *
+{
+	display: flex;
+}
+
+
+.right-bar
+{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+
+.right-bar main
+{
+	flex-grow: 1;
+}
+
+@media screen and (min-width: @md)
+{
+	.right-bar
+	{
+		margin: 0 0 0 250px;
+	}
+}
+
+a
+{
+	color: @a-foreground;
+	text-decoration: underline;
+}
+a:hover
+{
+	color: @a-hover-foreground;
+	text-decoration: none;
+}
+
+

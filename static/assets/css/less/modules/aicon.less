@@ -1,0 +1,53 @@
+
+.aicon
+{
+	display: block;
+	min-height: (76px + (2*24px));
+	padding-left: 100px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.aicon h3
+{
+	margin: 0;
+	font-size: 2em;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: bold;
+	white-space: nowrap;
+	margin: auto auto 4px;
+}
+@media screen and (min-width: @sm)
+{
+	.aicon h3
+	{
+		margin: auto auto 6px;
+	}
+	.project-phases li
+	{
+		padding: 10px 26px;
+		background-position: 26px;
+	}
+	.project-phases li a
+	{
+		padding: 24px 0 24px 102px;
+	}
+}
+.aicon h3 span::before
+{
+  counter-increment: section; /* Increment the value of section counter by 1 */
+  content: counter(section) ". ";  /* Display the value of section counter */
+}
+.aicon p
+{
+	margin: 0;
+	color: @project-phases-foreground;
+	line-height: 1.2em;
+}
+
+.aicon-gathering	{ background-image: url("../assets/img/icons/icon-gathering.svg"); }
+.aicon-planning		{ background-image: url("../assets/img/icons/icon-planning.svg"); }
+.aicon-developing	{ background-image: url("../assets/img/icons/icon-developing.svg"); }
+.aicon-testing		{ background-image: url("../assets/img/icons/icon-testing.svg"); }
+.aicon-deploying	{ background-image: url("../assets/img/icons/icon-deploying.svg"); }
+.aicon-maintaining	{ background-image: url("../assets/img/icons/icon-maintaining.svg"); }

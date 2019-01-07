@@ -1,0 +1,163 @@
+
+.zone
+{
+	padding: 10px 20px;
+}
+
+.zone-highlighted
+{
+	background: @zone-highlighted-background;
+	margin: 0px auto 0px;
+	padding: 20px;
+}
+.zone-homepage
+{
+	padding: 10px;
+}
+
+.zone h2
+{
+	margin: 0 0 15px;
+	font-size: 1.8em;
+	line-height: 1.1em;
+	color: @zone-heading-foreground;
+	font-weight: bold;
+}
+
+.zone h3
+{
+	font-size: 1.4em;
+	color: @zone-heading-foreground;
+	font-weight: bold;
+	line-height: 1.5em;
+}
+
+.zone p
+{
+	line-height: 1.5em;
+	margin: auto auto 16px;
+}
+
+.zone p:last-of-type
+{
+	margin: auto;
+}
+
+.zone ul
+{
+	list-style-type: none;
+	margin: 0;
+	line-height: 1.5em;
+	margin: 15px 15px 15px 30px;
+}
+.zone ol
+{
+	list-style-type: decimal;
+	margin: 15px 15px 15px 30px;
+	line-height: 1.5em;
+}
+.zone ul li::before
+{
+	display: inline-block;
+	content: "•";
+	margin-left: -15px;
+	width: 15px;
+	color: @zone-list-bullet-foreground;
+}
+
+.zone ul li, .zone ol li
+{
+	margin: 0;
+	color: @zone-content-foreground;
+}
+.zone ol li
+{
+	margin-bottom: 10px;
+}
+
+.right-zone .aicon
+{
+	display: none;
+}
+
+.zone table
+{
+    border: 1px solid #e0e8ea;
+    margin: 24px 0;
+	width: 100%;
+}
+.zone table th, .zone table tr:first-of-type td
+{
+    background: #e6ecee;
+    font-weight: 700;
+    text-align: left;
+}
+.zone table td, .zone table th
+{
+    padding: 10px;
+    border: 1px solid #c8d1d1;
+}
+.zone table td.red
+{
+    background: #FFE7E7;
+}
+.zone table td.green
+{
+    background: #DDFADE;
+}
+.zone table td.yellow
+{
+    background: #FFD;
+}
+.zone table td.lightgray
+{
+    background: #F5F8F8;
+}
+
+
+@media screen and (min-width: @sm)
+{
+	.zone
+	{
+		padding: 10px 20px;
+	}
+	.zone-highlighted
+	{
+		padding: 32px 20px 32px;
+	}
+}
+
+@media screen and (min-width: @md)
+{
+	.zone-highlighted
+	{
+		padding: 32px (20px + 26px + 238px) 32px 20px;
+	}
+	
+	.zone
+	{
+		padding: 16px (20px + 20px + 238px) 16px 20px;
+	}
+	
+	.right-zone
+	{
+		display: block;
+		float: right;
+		width: 238px;
+		padding: 32px 20px 32px;
+	}
+	
+	.right-zone .aicon
+	{
+		display: block;
+		width: 238px;
+		height: 238px;
+		background-size: contain;
+		margin: -80px 0 30px 0;
+	}
+	.zone h2
+	{
+		font-size: 2.8em;
+		margin: 15px 0 15px;
+	}
+}

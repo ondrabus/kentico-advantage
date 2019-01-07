@@ -16,7 +16,6 @@
     "gatsby-plugin-styled-components": "^3.0.4",
     "gatsby-plugin-typography": "^2.2.5",
     "gatsby-react-router-scroll": "^2.0.2",
-    "gatsby-source-kentico-cloud": "^2.1.5",
     "github-api": "^3.0.0",
     "react": "^16.7.0",
     "react-amphtml": "^3.0.1",
@@ -38,6 +37,8 @@
   "license": "MIT",
   "devDependencies": {
     "azure-search": "0.0.21",
+    "change-case": "^3.0.2",
+    "flatted": "^2.0.0",
     "gh-pages": "^2.0.1",
     "kentico-cloud-delivery": "^5.2.1"
   },

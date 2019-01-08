@@ -36,7 +36,8 @@ module.exports = {
               id: "GTM-NRNTQFM",
               includeInDevelopment: false,
             },
-          },
+        },
+        `gatsby-plugin-styled-components`
     ],
     pathPrefix: `/docs`
 }

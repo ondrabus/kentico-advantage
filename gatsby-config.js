@@ -42,7 +42,7 @@ module.exports = {
             resolve: 'gatsby-plugin-web-font-loader',
             options: {
               google: {
-                families: ['Source Sans Pro']
+                families: ['Source Sans Pro:300,400,700,400italic:latin,latin-ext']
               }
             }
         }

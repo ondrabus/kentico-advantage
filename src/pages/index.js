@@ -10,7 +10,7 @@ export default () => (
             <Jumbotron
                 className="jumbotron-homepage"
                 header="Kentico Advantage"
-                teaser="Kentico Consulting team created this guide so you can leverage our experience with many different projects to help you avoid pitfalls and address potentially weak places in the project."
+                teaser="Leverage the collective experience of Kentico solution architects to successfully navigate the process of building a Kentico project using best practices and avoiding pitfalls through every stage of your project."
             />
             
             <Teaser>

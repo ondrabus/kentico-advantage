@@ -112,7 +112,7 @@ class SearchResults extends React.Component
     render(){
         var searchResults = this.state.results.map((item) => 
         <ContentZone key={item.id}>
-            <a href={item.url} title={item.title}><h2>{item.title}</h2></a>
+            <a href={'/' + item.url} title={item.title}><h2>{item.title}</h2></a>
             <div dangerouslySetInnerHTML={{__html: item.teaser }}></div>
         </ContentZone>        
         );

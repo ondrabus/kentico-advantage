@@ -37,7 +37,15 @@ module.exports = {
               includeInDevelopment: false,
             },
         },
-        `gatsby-plugin-styled-components`
+        `gatsby-plugin-styled-components`,
+        {
+            resolve: 'gatsby-plugin-web-font-loader',
+            options: {
+              google: {
+                families: ['Source Sans Pro']
+              }
+            }
+        }
     ],
     pathPrefix: `/docs`
 }

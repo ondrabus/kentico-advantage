@@ -115,7 +115,6 @@ class Layout extends React.Component
                 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"></meta>
                 
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic&amp;subset=latin,latin-ext"></link>
 
                 <link rel="shortcut icon" type="image/ico" href="/favicon.ico"></link>
                 <title>Kentico Advantage</title>

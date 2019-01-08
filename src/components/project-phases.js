@@ -18,6 +18,7 @@ const ProjectPhasesContainer = styled.section`
         display: block;
         text-decoration: none;
         padding: 24px 0 24px 16px;
+        min-height: 76px;
     }
     li
     {

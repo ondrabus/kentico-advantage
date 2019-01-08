@@ -23,7 +23,7 @@ const ContentZoneContainer = styled.section`
             padding: 32px 20px 32px;
         `}
         ${style.media.md`
-            /*padding: 16px 278px 16px 20px;*/
+            padding: 16px 278px 16px 20px;
         `}
     }
 

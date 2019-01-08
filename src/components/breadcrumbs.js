@@ -38,7 +38,7 @@ const BreadcrumbsContainer = styled.nav`
 		margin-right: 6px;
 		content: "/";
 	}  
-`
+`;
 
 class Breadcrumbs extends React.Component
 {

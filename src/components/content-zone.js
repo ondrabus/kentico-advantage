@@ -153,7 +153,7 @@ const ContentZoneContainer = styled.section`
     {
         background: #F5F8F8;
     }
-`
+`;
 
 class ContentZone extends React.Component
 {

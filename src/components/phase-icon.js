@@ -38,16 +38,16 @@ const PhaseIconContainer = styled.li`
             margin: auto auto 6px;
         }
     `}
-`
+`;
 
 const LinkContainer = styled.a`
-`
+`;
 const IconContainer = styled.span`
     display: block;
     float: left;
     width: 76px;
     margin-right: 24px;
-`
+`;
 
 class PhaseIcon extends React.Component
 {

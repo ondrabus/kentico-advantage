@@ -96,7 +96,7 @@ const PoweredBy = styled.div`
         flex-grow: 1;
         align-items: center;
     }
-`
+`;
 
 class Menu extends React.Component
 {

@@ -119,7 +119,7 @@ const JumbotronContainer = styled.div`
             padding: 20px;
         `}
     }
-`
+`;
 
 class Jumbotron extends React.Component
 {

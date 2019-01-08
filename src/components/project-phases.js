@@ -42,7 +42,7 @@ const ProjectPhasesContainer = styled.section`
     {
         padding: 0;
     }
-`
+`;
 
 class ProjectPhases extends React.Component
 {

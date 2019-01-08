@@ -79,7 +79,7 @@ const GlobalStyle = createGlobalStyle`
             }
         }
     }
-`
+`;
 
 const BodyContainer = styled.div`
     display: flex;

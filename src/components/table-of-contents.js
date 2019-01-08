@@ -10,7 +10,7 @@ const TableOfContentsContainer = styled.div`
         padding: 10px 10px 5px 15px;
         list-style-type: none;
     }
-`
+`;
 
 class TableOfContents extends React.Component
 {

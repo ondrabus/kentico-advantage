@@ -37,15 +37,60 @@ module.exports = {
               includeInDevelopment: false,
             },
         },
+        {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+              name: 'Kentico Advantage',
+              short_name: 'Kentico Advantage',
+              start_url: '/',
+              background_color: '#F05A22',
+              theme_color: '#F05A22',
+              display: 'minimal-ui',
+              icon: 'static/assets/img/apple_touch/favicon-32x32.png', // This path is relative to the root of the site.
+            },
+        },
         `gatsby-plugin-styled-components`,
         {
-            resolve: 'gatsby-plugin-web-font-loader',
+            resolve: 'gatsby-plugin-offline',
             options: {
-              google: {
-                families: ['Source Sans Pro:300,400,700,400italic:latin,latin-ext']
-              }
+              runtimeCaching: [
+                {
+                  urlPattern: /^https:\/\/assets-us-01.kc-usercontent.com\//,
+                  handler: 'staleWhileRevalidate',
+                  options: {
+                    cacheableResponse: {
+                      statuses: [0, 200]
+                    },
+                    cacheName: 'kc-assets-data'
+                  }
+                },
+                {
+                  urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+                  handler: 'staleWhileRevalidate',
+                  options: {
+                    cacheableResponse: {
+                      statuses: [0, 200]
+                    },
+                    cacheName: 'google-fonts-stylesheets'
+                  }
+                },
+                {
+                  urlPattern: /^https:\/\/fonts\.gstatic\.com/,
+                  handler: 'cacheFirst',
+                  options: {
+                    cacheableResponse: {
+                      statuses: [0, 200]
+                    },
+                    cacheName: 'google-fonts-webfonts',
+                    expiration: {
+                      maxAgeSeconds: 60 * 60,
+                      maxEntries: 30
+                    }
+                  }
+                }
+              ]
             }
-        }
+        },
     ],
     pathPrefix: `/docs`
 }

@@ -1,10 +1,25 @@
-# gatsby-starter-hello-world
-Starter with the bare essentials needed for a [Gatsby](https://www.gatsbyjs.org/) site
+# Kentico Advantage site
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-```
-gatsby new gatsby-site https://github.com/gatsbyjs/gatsby-starter-hello-world
-```
+## 🚀 Quick start
 
-## Running in development
-`gatsby develop`
+
+1.  **Install the dependencies**
+
+    ```sh
+    npm install
+    ```
+
+    Including Gatsby CLI installation.
+
+
+3.  **Start developing.**
+
+    ```sh
+    npm run develop  
+    ```
+
+4.  **Open the source code and start editing!**
+
+    Your site is now running at `http://localhost:8000`!
+    
+    *Note: You'll also see a second link: `http://localhost:8000___graphql`. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://next.gatsbyjs.org/tutorial/part-five/#introducing-graphiql).*

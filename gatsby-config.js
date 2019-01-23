@@ -92,6 +92,7 @@ module.exports = {
               ]
             }
         },
+        'gatsby-plugin-meta-redirect',
     ],
     pathPrefix: `/docs`
 }

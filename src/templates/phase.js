@@ -10,6 +10,7 @@ import Scenarios from "../components/scenarios"
 import References from "../components/references"
 import {graphql} from 'gatsby'
 import styled from 'styled-components'
+import NextPrevButtons from "../components/nextprev-buttons"
 
 const IconContainer = styled.div`
 img
@@ -34,6 +35,39 @@ export default ({data}) => {
         return text.replace(/(<td>)\{\.(.*?)\}+/g, '<td class="$2">');
     }
 
+    var currentIndex = 0;
+    var phaseIndex = 0;
+    var subIndex = 0;
+    var phaseSubIndex = 0;
+
+    
+    data.allKenticoCloudItemNavigationItem.edges[0].node.elements.child_items.forEach(phaseNav => {
+        if (phaseNav.elements.content_item && Array.isArray(phaseNav.elements.content_item) && phaseNav.elements.content_item.length == 1)
+        {
+            currentIndex++;
+
+            if (phaseNav.elements.content_item[0].system.id === phase.system.id)
+            {
+                phaseIndex = currentIndex;
+            }
+            if (phaseNav.elements.content_item[0].elements.subphases && Array.isArray(phaseNav.elements.content_item[0].elements.subphases) && phaseNav.elements.content_item[0].elements.subphases.length > 0)
+            {
+                subIndex = 0;
+                phaseNav.elements.content_item[0].elements.subphases.forEach(subphaseNav => {
+                    subIndex++;
+
+                    if (subphaseNav.system.id === phase.system.id)
+                    {
+                        phaseIndex = currentIndex;
+                        phaseSubIndex = subIndex;
+                    }
+                })
+            }
+        }
+    });
+
+    const index = phaseIndex + '.' + (phaseSubIndex > 0 ? phaseSubIndex + '.' : '');
+
     return (
         <Layout pageId={phase.system.id}>
             <Helmet>
@@ -46,7 +80,7 @@ export default ({data}) => {
                 <Jumbotron
                     className={'jumbotron-content-page ' + phase.elements.background.options[0].codename}
                     page={phase.elements.url.value}
-                    header={phase.elements.title.value}
+                    header={index + ' ' + phase.elements.title.value}
                 />
 
                 <Teaser>
@@ -82,6 +116,8 @@ export default ({data}) => {
                     <References data={phase.elements.references} />
                 </ContentZone>
                 }
+
+                <NextPrevButtons phase={phase} />
             </main>
         </Layout>
         );
@@ -142,5 +178,29 @@ export const query = graphql`
                 }
             }
         }
+        allKenticoCloudItemNavigationItem(filter: {system: {codename: {eq: "nav_project_phases"}}}) {
+            edges {
+              node {
+                elements {
+                  child_items {
+                    elements {
+                      content_item {
+                        system {
+                          id
+                        }
+                        elements {
+                          subphases {
+                            system {
+                              id
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
     }
 `

@@ -9,6 +9,7 @@ module.exports = {
         title: `Kentico Advantage`
     },
     plugins: [
+        'gatsby-plugin-react-helmet',
         {
             resolve: `gatsby-source-kentico-cloud`,
             options: {

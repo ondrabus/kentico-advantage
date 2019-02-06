@@ -1,5 +1,14 @@
 # Kentico Advantage site
 
+[![Build Status](https://api.travis-ci.org/Kentico/kentico.github.io.svg?branch=source)](https://travis-ci.org/Kentico/kentico-advantage)
+[![Live](https://img.shields.io/badge/live-demo-brightgreen.svg)](https://advantage.kentico.com)
+
+This site is using [GatsbyJS](https://next.gatsbyjs.org) static site generation.
+
+Data is stored in [Kentico Cloud](https://kenticocloud.com) and provided by [Gatsby source plugin](https://github.com/Kentico/gatsby-source-kentico-cloud).
+
+Source code for the website is stored in [source branch](https://github.com/Kentico/kentico-advantage/tree/source)
+
 ## 🚀 Quick start
 
 

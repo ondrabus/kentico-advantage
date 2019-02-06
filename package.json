@@ -5,7 +5,7 @@
   "author": "Ondrej Polesny <ondrejp@kentico.com>",
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build && cpx -v \".github/**/*\" public/.github && cpx CNAME public && cpx CODE_OF_CONDUCT.md public && cpx CONTRIBUTING.md public",
+    "build": "gatsby build && cpx -v \".github/**/*\" public/.github && cpx CNAME public && cpx CODE_OF_CONDUCT.md public && cpx CONTRIBUTING.md public && cpx CODEOWNERS public && cpx README.md public",
     "deploy": "gh-pages -d public -b master"
   },
   "dependencies": {

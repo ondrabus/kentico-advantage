@@ -2,6 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/Kentico/kentico.github.io.svg?branch=source)](https://travis-ci.org/Kentico/kentico-advantage)
 [![Live](https://img.shields.io/badge/live-demo-brightgreen.svg)](https://advantage.kentico.com)
+[![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-cloud)
 
 This site is using [GatsbyJS](https://next.gatsbyjs.org) static site generation.
 

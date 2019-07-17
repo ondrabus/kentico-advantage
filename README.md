@@ -1,6 +1,6 @@
 # Kentico Advantage site
 
-[![Build Status](https://api.travis-ci.com/Kentico/kentico.github.io.svg?branch=source)](https://travis-ci.com/Kentico/kentico-advantage)
+[![Build Status](https://api.travis-ci.com/Kentico/kentico-advantage.svg?branch=source)](https://travis-ci.com/Kentico/kentico-advantage)
 [![Live](https://img.shields.io/badge/live-brightgreen.svg)](https://advantage.kentico.com)
 [![Stack Overflow](https://img.shields.io/badge/Stack%20Overflow-ASK%20NOW-FE7A16.svg?logo=stackoverflow&logoColor=white)](https://stackoverflow.com/tags/kentico-cloud)
 

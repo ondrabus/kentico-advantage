@@ -89,6 +89,15 @@ const PoweredBy = styled.div`
     text-align: center;
     padding-bottom: 15px;
 
+    .powered-by-title {
+      margin: 24px;
+      font-size: 14px;
+    }
+
+    img {
+      height:60px
+    }
+
     a
     {
         display: flex;
@@ -233,8 +242,11 @@ class Menu extends React.Component
                                     </nav>
                                     
                                     <PoweredBy>
-                                        <a href="https://kenticocloud.com">
-                                            <img src="../assets/img/powered-by-kc@1x.png" alt="KC" />
+                                      <div className="powered-by-title">
+                                        Powered by
+                                      </div>
+                                        <a href="https://kontent.ai/">
+                                            <img src="../assets/img/powered-by-kk.png" alt="KK"/>
                                         </a>
                                     </PoweredBy>
                                 </LeftBar>

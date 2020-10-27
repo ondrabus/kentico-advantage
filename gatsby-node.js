@@ -14,7 +14,7 @@ exports.createPages = ({graphql, actions}) => {
 
     return new Promise((resolve, reject) => {
         graphql(`{
-            allKenticoCloudItemPhase
+            allKontentItemPhase
             {
               edges{
                 node{
@@ -29,7 +29,7 @@ exports.createPages = ({graphql, actions}) => {
                 }
               }
             }
-            allKenticoCloudItemPage
+            allKontentItemPage
             {
               edges{
                 node{
@@ -51,7 +51,7 @@ exports.createPages = ({graphql, actions}) => {
                 reject(result.errors);
             }
 
-            result.data.allKenticoCloudItemPhase.edges.forEach(edge => {
+            result.data.allKontentItemPhase.edges.forEach(edge => {
                 if (edge.node.system.id !== '8152a11a-0dc1-4dc2-a0f1-652b933c8f42')
                 {
                     createPage({
@@ -64,7 +64,7 @@ exports.createPages = ({graphql, actions}) => {
                 }
             });
 
-            result.data.allKenticoCloudItemPage.edges.forEach(edge => {
+            result.data.allKontentItemPage.edges.forEach(edge => {
                 createPage({
                     path: edge.node.elements.url.value,
                     component: path.resolve(`src/templates/page.js`),

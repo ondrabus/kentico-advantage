@@ -47,44 +47,57 @@ class Breadcrumbs extends React.Component
             <StaticQuery 
                 query={graphql`
                 {
-                    allKenticoCloudItemNavigationItem(filter: {elements: {url: {value: {eq: "~"}}}}) {
-                      edges {
-                        node {
-                          elements {
-                            child_items {
-                              system { id }
-                              elements {
-                                title { value }
-                                content_item {
-                                  system {
-                                    id
-                                  }
-                                  elements {
-                                    url {
-                                      value
-                                    }
-                                    title {
-                                      value
-                                    }
-                                  }
+  allKontentItemNavigationItem(filter: {elements: {url: {value: {eq: "~"}}}}) {
+    edges {
+      node {
+        elements {
+          child_items {
+            value {
+              ... on kontent_item_navigation_item {
+                system {
+                  id
+                }
+                elements {
+                  title {
+                    value
+                  }
+                  content_item {
+                    value {
+                      ... on kontent_item_phase {
+                        system {
+                          id
+                        }
+                        elements {
+                          title {
+                            value
+                          }
+                          url {
+                            value
+                          }
+                        }
+                      }
+                    }
+                  }
+                  child_items {
+                    value {
+                      ... on kontent_item_navigation_item {
+                        system {
+                          id
+                        }
+                        elements {
+                          content_item {
+                            value {
+                              ... on kontent_item_phase {
+                                system {
+                                  id
+                                  type
                                 }
-                                child_items {
-                                  system { id }
-                                  elements {
-                                    content_item {
-                                      system {
-                                        id
-                                        type
-                                      }
-                                      elements {
-                                        url {
-                                          value
-                                        }
-                                        title {
-                                          value
-                                        }
-                                      }
-                                    }
+                                elements {
+                                  title {
+                                    value
+                                  }
+                                  url {
+                                    value
                                   }
                                 }
                               }
@@ -93,36 +106,53 @@ class Breadcrumbs extends React.Component
                         }
                       }
                     }
-                    allKenticoCloudItemPhase {
-                        edges {
-                          node {
-                            system {
-                              id
-                            }
-                            elements {
-                              subphases {
-                                system {
-                                  id
-                                }
-                                elements {
-                                    title {value}
-                                    url {value}
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  allKontentItemPhase {
+    edges {
+      node {
+        system {
+          id
+        }
+        elements {
+          subphases {
+            value {
+              ... on kontent_item_phase {
+                system {
+                  id
+                }
+                elements {
+                  title {
+                    value
+                  }
+                  url {
+                    value
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
                 `}
                 render={data => {
                     const contentItemId = this.props.pageId;
-                    const rootNode = data.allKenticoCloudItemNavigationItem.edges[0].node;
+                    const rootNode = data.allKontentItemNavigationItem.edges[0].node;
                     var breadcrumbItems = [
                         <Link to="/" title="Introduction" key="0">Introduction</Link>
                     ];
 
-                    var currentItems = rootNode.elements.child_items;
+                    var currentItems = rootNode.elements.child_items.value;
                     var foundFirstLevelItem = this.findItem(currentItems, contentItemId);
 
                     if (foundFirstLevelItem)
@@ -134,7 +164,7 @@ class Breadcrumbs extends React.Component
                         // find in sublevel
                         for (var i = 0; i < currentItems.length; i++)
                         {
-                            var secondLevelCurrentItems = currentItems[i].elements.child_items;
+                            var secondLevelCurrentItems = currentItems[i].elements.child_items.value;
                             var foundSecondLevelItem = this.findItem(secondLevelCurrentItems, contentItemId);
                             if (foundSecondLevelItem)
                             {
@@ -146,15 +176,16 @@ class Breadcrumbs extends React.Component
                             else
                             {
                                 // check third level if phase
-                                var secondLevelCurrentItemsPhase = secondLevelCurrentItems.filter(item => Array.isArray(item.elements.content_item) && item.elements.content_item.length === 1 && item.elements.content_item[0].system.type === 'phase');
+                                var secondLevelCurrentItemsPhase = secondLevelCurrentItems.filter(item => item.elements.content_item && Array.isArray(item.elements.content_item.value) && item.elements.content_item.value.length === 1 && item.elements.content_item.value[0].system.type === 'phase');
 
                                 for (var j = 0; j < secondLevelCurrentItemsPhase.length; j++)
                                 {
+                                    let phaseId = secondLevelCurrentItems[j].elements.content_item.value[0].system.id
                                     // get phase reference
-                                    var phase = data.allKenticoCloudItemPhase.edges.filter(edge => edge.node.system.id === secondLevelCurrentItems[j].elements.content_item[0].system.id);
+                                    var phase = data.allKontentItemPhase.edges.filter(edge => edge.node.system.id === phaseId);
 
                                     // search subphases
-                                    var foundSubPhase = phase[0].node.elements.subphases.filter(item => item.system.id === contentItemId);
+                                    var foundSubPhase = phase[0].node.elements.subphases.value.filter(item => item.system.id === contentItemId);
 
                                     if (foundSubPhase.length === 1)
                                     {
@@ -181,7 +212,7 @@ class Breadcrumbs extends React.Component
 
     findItem(items, contentItemId)
     {
-        var currentItem = items.filter(navItem => Array.isArray(navItem.elements.content_item) && navItem.elements.content_item.length === 1 && navItem.elements.content_item[0].system.id === contentItemId);
+        var currentItem = items.filter(navItem => navItem.elements.content_item && Array.isArray(navItem.elements.content_item.value) && navItem.elements.content_item.value.length === 1 && navItem.elements.content_item.value[0].system.id === contentItemId);
         if (currentItem.length === 1)
             return currentItem[0];
 
@@ -189,9 +220,9 @@ class Breadcrumbs extends React.Component
     }
     getLink(item)
     {
-        if (item.elements.content_item.length === 1)
+        if (item.elements.content_item.value.length === 1)
         {
-            return <Link key={item.system.id} to={item.elements.content_item[0].elements.url.value} title={item.elements.content_item[0].elements.title.value}>{item.elements.content_item[0].elements.title.value}</Link>
+            return <Link key={item.system.id} to={"/" + item.elements.content_item.value[0].elements.url.value} title={item.elements.content_item.value[0].elements.title.value}>{item.elements.content_item.value[0].elements.title.value}</Link>
         }
         else
         {

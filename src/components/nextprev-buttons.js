@@ -49,23 +49,26 @@ class NextPrevButtons extends React.Component
         return (
         <StaticQuery
             query={graphql`
-            {
-                allKenticoCloudItemNavigationItem(filter: {system: {codename: {eq: "nav_project_phases"}}}) {
-                  edges {
-                    node {
-                      elements {
-                        child_items {
-                          elements {
-                            content_item {
+{
+  allKontentItemNavigationItem(filter: {system: {codename: {eq: "nav_project_phases"}}}) {
+    edges {
+      node {
+        elements {
+          child_items {
+            value {
+              ... on kontent_item_navigation_item {
+                elements {
+                  content_item {
+                    value {
+                      ... on kontent_item_phase {
+                        system {
+                          id
+                        }
+                        elements {
+                          subphases {
+                            value {
                               system {
                                 id
-                              }
-                              elements {
-                                subphases {
-                                  system {
-                                    id
-                                  }
-                                }
                               }
                             }
                           }
@@ -74,38 +77,44 @@ class NextPrevButtons extends React.Component
                     }
                   }
                 }
-                allKenticoCloudItemPhase {
-                    edges {
-                    node {
-                        system{
-                            id
-                        }
-                        elements {
-                        title {
-                            value
-                        }
-                        url {
-                            value
-                        }
-                        }
-                    }
-                    }
-                }
-
-              }              
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  allKontentItemPhase {
+    edges {
+      node {
+        system {
+          id
+        }
+        elements {
+          title {
+            value
+          }
+          url {
+            value
+          }
+        }
+      }
+    }
+  }
+}
                 `}
             render={data => {
                 const phasesList = [];
-                data.allKenticoCloudItemNavigationItem.edges[0].node.elements.child_items.forEach(phase => {
-                    if (phase.elements.content_item && Array.isArray(phase.elements.content_item) && phase.elements.content_item.length == 1)
+                data.allKontentItemNavigationItem.edges[0].node.elements.child_items.value.forEach(phase => {
+                    if (phase.elements.content_item && Array.isArray(phase.elements.content_item.value) && phase.elements.content_item.value.length === 1)
                     {
                         // add main phase ID
-                        phasesList.push(phase.elements.content_item[0].system.id);
+                        phasesList.push(phase.elements.content_item.value[0].system.id);
                         // process subphases
                         
-                        if (phase.elements.content_item[0].elements.subphases && Array.isArray(phase.elements.content_item[0].elements.subphases) && phase.elements.content_item[0].elements.subphases.length > 0)
+                        if (phase.elements.content_item.value[0].elements.subphases && Array.isArray(phase.elements.content_item.value[0].elements.subphases.value) && phase.elements.content_item.value[0].elements.subphases.value.length > 0)
                         {
-                            phase.elements.content_item[0].elements.subphases.forEach(subphase => {
+                            phase.elements.content_item.value[0].elements.subphases.value.forEach(subphase => {
                                 phasesList.push(subphase.system.id);
                             })
                         }
@@ -113,7 +122,7 @@ class NextPrevButtons extends React.Component
                 })
 
                 const phases = [];
-                data.allKenticoCloudItemPhase.edges.forEach(phase => {
+                data.allKontentItemPhase.edges.forEach(phase => {
                     phases.push(({id: phase.node.system.id, title: phase.node.elements.title.value, url: phase.node.elements.url.value}));
                 });
 
@@ -124,10 +133,10 @@ class NextPrevButtons extends React.Component
                 return (
                 <NextPrevButtonsContainer>
                     {prevPhase && 
-                        <Link to={prevPhase.url} title={prevPhase.title} className="prev">Previous</Link>
+                        <Link to={"/" + prevPhase.url} title={prevPhase.title} className="prev">Previous</Link>
                     }
                     {nextPhase &&
-                        <Link to={nextPhase.url} title={nextPhase.title} className="next">Next</Link>
+                        <Link to={"/" + nextPhase.url} title={nextPhase.title} className="next">Next</Link>
                     }
                 </NextPrevButtonsContainer>
                 );

@@ -5,11 +5,12 @@ import Helmet from 'react-helmet'
 import Teaser from "../components/teaser"
 import ContentZone from "../components/content-zone"
 import Breadcrumbs from "../components/breadcrumbs"
-import {graphql} from 'gatsby'
 import References from "../components/references"
+import { RichTextElement } from "@kentico/gatsby-kontent-components"
+import { graphql, Link } from "gatsby"
 
 export default ({data}) => {
-    const page = data.allKenticoCloudItemPage.edges[0].node;
+    const page = data.allKontentItemPage.edges[0].node;
 
     return (
         <Layout pageId={page.system.id}>
@@ -31,52 +32,88 @@ export default ({data}) => {
                 </Teaser>
 
                 <ContentZone>
-                    <div dangerouslySetInnerHTML={{__html: page.elements.content.resolvedHtml}}></div>
+                    {/* <div dangerouslySetInnerHTML={{__html: page.elements.content.resolvedHtml}}></div> */}
+                    <RichTextElement
+                    value={page.elements.content.value}
+                    images={page.elements.content.images}
+                    links={page.elements.content.links}
+                    resolveImage={image => {
+                      return (
+                        <img
+                          src={image.url}
+                          alt={image.description}
+                        />
+                      )
+                    }}
+                    resolveLink={(link, domNode) => {
+                      return (
+                        <Link to={`/${link.url_slug}`}>
+                          {domNode.children[0].data}
+                        </Link>
+                      )
+                    }}
+                  />
                 </ContentZone>
                 
-                {page.elements.references && Array.isArray(page.elements.references) && page.elements.references.length > 0 &&
+                {page.elements.references && Array.isArray(page.elements.references.value) && page.elements.references.value.length > 0 &&
                     <ContentZone>
-                        <References data={page.elements.references} />
+                        <References data={page.elements.references.value} />
                     </ContentZone>
                 }
             </main>
         </Layout>
         );
     }
-
 export const query = graphql`
     query($id: String!) {
-        allKenticoCloudItemPage (filter: {system: {id: {eq: $id}}}) {
-            edges {
-                node {
-                    elements {
-                        title {
-                        value
-                        }
-                        url {
-                        value
-                        }
-                        content {
-                            value
-                            resolvedHtml
-                        }
-                        teaser{
-                            value
-                        }
-                        references
-                        {
-                            system { id }
-                            elements{
-                                title { value }
-                                url { value }
-                            }
-                        }
-                    }
-                    system {
-                        id
-                    }
-                }
+        allKontentItemPage(filter: {system: {id: {eq: $id}}}) {
+    edges {
+      node {
+        elements {
+          title {
+            value
+          }
+          url {
+            value
+          }
+          content {
+            value
+            images {
+              image_id
+              url
+              description
             }
+            links {
+              link_id
+              url_slug
+            }
+          }
+          teaser {
+            value
+          }
+          references {
+            value {
+              ... on kontent_item_link {
+                elements {
+                  title {
+                    value
+                  }
+                  url {
+                    value
+                  }
+                }
+                system {
+                  id
+                }
+              }
+            }
+          }
         }
+        system {
+          id
+        }
+      }
+    }
+  }
     }
 `

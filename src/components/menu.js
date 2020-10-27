@@ -113,118 +113,91 @@ class Menu extends React.Component
         return (<StaticQuery
                     query={graphql`
                     {
-                        allKenticoCloudItemNavigationItem(filter: {elements: {url: {value: {eq: "~"}}}}) {
-                          edges {
-                            node {
-                              elements {
-                                child_items {
+                      navigationItems: allKontentItem(filter: {system: {type: {eq: "navigation_item"}}}) {
+                        nodes {
+                          ... on kontent_item_navigation_item {
+                            elements {
+                              title {
+                                value
+                              }
+                              url {
+                                value
+                              }
+                              child_items {
+                                value {
+                                  id
+                                }
+                              }
+                              content_item {
+                                value {
                                   system {
                                     id
-                                  }
-                                  elements {
-                                    title {
-                                      value
-                                    }
-                                    content_item {
-                                      system {
-                                        id
-                                      }
-                                      elements {
-                                        url {
-                                          value
-                                        }
-                                      }
-                                    }
-                                    child_items {
-                                      system {
-                                        id
-                                      }
-                                      elements {
-                                        title {
-                                          value
-                                        }
-                                        content_item {
-                                          system {
-                                            id
-                                          }
-                                          elements {
-                                            url {
-                                              value
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
+                                    type
                                   }
                                 }
                               }
                             }
                           }
+                          id
                         }
-                        allKenticoCloudItemPhase {
-                          edges {
-                            node {
-                              system {
-                                id
-                              }
-                              elements {
-                                subphases {
-                                  system {
-                                    id
-                                  }
+                      }
+                      phases: allKontentItem(filter: {system: {type: {eq: "phase"}}}) {
+                        nodes {
+                          id
+                          ... on kontent_item_phase {
+                            system { id }
+                            elements {
+                              subphases {
+                                value {
+                                  system { id }
                                 }
+                              }
+                              url {
+                                value
                               }
                             }
                           }
                         }
-                      }                      
+                      }
+                    }
                     `}
                     render={data => {
-                        var menu = data.allKenticoCloudItemNavigationItem.edges[0].node.elements.child_items.map(node => {
-                            var childItems = node.elements.child_items.map(childNode => {
+                        let navigationItems = {};
+                        data.navigationItems.nodes.forEach(item => navigationItems[item.id] = item);
+                        let phases = {};
+                        data.phases.nodes.forEach(item => phases[item.system.id] = item);
 
-                                var isActive = false;
-                                if (this.props.activePageId && Array.isArray(childNode.elements.content_item) && childNode.elements.content_item.length === 1)
-                                {
-                                    if (this.props.activePageId === childNode.elements.content_item[0].system.id)
-                                    {
-                                        isActive = true;
-                                    }
-                                    else
-                                    {
-                                        const phase = data.allKenticoCloudItemPhase.edges.filter(phaseEdge => phaseEdge.node.system.id === childNode.elements.content_item[0].system.id);
-                                        if (phase.length === 1 && phase[0].node.elements.subphases.filter(subPhase => subPhase.system.id === this.props.activePageId).length > 0)
-                                        {
-                                            isActive = true;
-                                        }
-                                    }
-                                }
-                                
-                                return <li key={childNode.system.id}>
-                                    <Link to={childNode.elements.content_item[0].elements.url.value} className={isActive ? 'active' : ''} title={childNode.elements.title.value}>{childNode.elements.title.value}</Link>
-                                </li>
-                            });
+                        let rootItem = data.navigationItems.nodes.find(n => n.elements.url.value === "~");
+                        rootItem.children = rootItem.elements.child_items.value.map(i => navigationItems[i.id]);
+                        rootItem.children.forEach(menuItem => menuItem.children = menuItem.elements.child_items.value.map(subMenuItem => navigationItems[subMenuItem.id]));
 
-                            if (childItems)
-                            {
-                                childItems = <ul>{childItems}</ul>
-                            }
-                            
-                            var link = node.elements.title.value;
-                            if (node.elements.content_item.length === 1)
-                            {
-                                link = <Link to={node.elements.content_item[0].elements.url.value} title={node.elements.title.value}>{link}</Link>
-                            }
-                            return (<li key={node.system.id}>
-                                {link}
-                                {childItems}
-                            </li>);
+                        let menu = rootItem.children.map(menuItem => {
+                          let subMenu = menuItem.children && <ul>
+                            {menuItem.children.map(subMenuItem => {
+                              let currentPhase = phases[subMenuItem.elements.content_item.value[0].system.id];
+                              let isActive = false;
+                              if (currentPhase.system.id === this.props.activePageId || currentPhase.elements.subphases.value.some(subphase => subphase.system.id === this.props.activePageId))
+                              {
+                                isActive = true;
+                              }
+                              return (<li key={currentPhase.elements.url.value}>
+                              <Link className={isActive ? 'active' : ''} to={`/${currentPhase.elements.url.value}`} title={subMenuItem.elements.title.value}>{subMenuItem.elements.title.value}</Link>
+                              </li>
+                            )})}
+                            </ul>
+                          let item = menuItem.elements.title.value;
+                          if (menuItem.elements.content_item.value.length > 0)
+                          {
+                            let currentPhase = phases[menuItem.elements.content_item.value[0].system.id];
+                            item = <Link className={currentPhase.system.id === this.props.activePageId ? 'active' : ''} to={`/${currentPhase.elements.url.value}`} title={menuItem.elements.title.value}>{item}</Link>
+                          }
+                          return (<li key={menuItem.elements.url.value}>{item}{subMenu}</li>)
                         });
 
                         return (
                                 <LeftBar className={this.props.menuVisible ? 'open' : 'closed'}>
                                     <div className="close">
-                                        <a href="javascript:;" title="Close" className="left-bar-button" onClick={this.props.onMenuButtonClick}>
+                                        <a title="Close" className="left-bar-button" onClick={this.props.onMenuButtonClick} href="#!">
                                             <i className="fa fa-times"></i>
                                         </a>
                                     </div>

@@ -10,26 +10,35 @@ module.exports = {
     },
     plugins: [
         'gatsby-plugin-react-helmet',
+        // {
+        //     resolve: `gatsby-source-kentico-cloud`,
+        //     options: {
+        //         deliveryClientConfig: {
+        //             projectId: 'c1b57fce-743a-0048-c4ee-4f8c42ea3ab8',
+        //             typeResolvers: [
+        //                 new KC.TypeResolver('navigation-item', () => new navigationItem()),
+        //                 new KC.TypeResolver('link', () => new link()),
+        //                 new KC.TypeResolver('phase', () => new phase()),
+        //                 new KC.TypeResolver('scenario', () => new scenario()),
+        //             ],
+        //             enablePreviewMode: false,
+        //         },
+        //         languageCodenames: [
+        //           'default',
+        //         ],
+        //         queryConfig: {
+        //           usePreviewMode: true,
+        //         }
+        //     }
+        // },
         {
-            resolve: `gatsby-source-kentico-cloud`,
-            options: {
-                deliveryClientConfig: {
-                    projectId: 'c1b57fce-743a-0048-c4ee-4f8c42ea3ab8',
-                    typeResolvers: [
-                        new KC.TypeResolver('navigation-item', () => new navigationItem()),
-                        new KC.TypeResolver('link', () => new link()),
-                        new KC.TypeResolver('phase', () => new phase()),
-                        new KC.TypeResolver('scenario', () => new scenario()),
-                    ],
-                    enablePreviewMode: false,
-                },
-				languageCodenames: [
-					'default',
-				],
-				queryConfig: {
-					usePreviewMode: true,
-				}
-            }
+          resolve: '@kentico/gatsby-source-kontent',
+          options: {
+            projectId: 'c1b57fce-743a-0048-c4ee-4f8c42ea3ab8', // Fill in your Project ID
+            languageCodenames: [
+              'default', // Languages in your project (Project settings -> Localization),
+            ],
+          },
         },
         {
             resolve: `gatsby-plugin-google-tagmanager`,

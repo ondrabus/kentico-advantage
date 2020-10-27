@@ -15,7 +15,7 @@ class Scenario extends React.Component
 
     render(){
         return (<li key={this.props.scenario.system.id}>
-            <h3><a class={this.state.active ? 'open' : 'closed'} href="javascript:;" onClick={this.toggleVisibility}>{this.props.scenario.elements.title.value}</a></h3>
+            <h3><a class={this.state.active ? 'open' : 'closed'} href="#!" onClick={this.toggleVisibility}>{this.props.scenario.elements.title.value}</a></h3>
                 {this.state.active &&  
             <div dangerouslySetInnerHTML={{__html: this.props.scenario.elements.detail.value}}></div>}
         </li>);

@@ -48,40 +48,41 @@ const ProjectPhasesContainer = styled.section`
 class ProjectPhases extends React.Component
 {
     render(){
-        return (
-            <StaticQuery
+            return <StaticQuery
                 query={graphql`
                         query Phases {
-                            allKenticoCloudItemNavigationItem(filter: {system: {codename: {eq: "nav_project_phases"}}}) {
-                                edges {
-                                  node {
-                                    elements {
-                                        child_items {
-                                            elements {
-                                                content_item {
-                                                    elements {
-                                                    title {
-                                                        value
-                                                    }
-                                                    url {
-                                                        value
-                                                    }
-                                                    overview {
-                                                        value
-                                                    }
-                                                    icon
-                                                    {
-                                                        assets { url }
-                                                    }
-                                                    }
-                                                    system {
-                                                    type
+                            kontentItemNavigationItem(system: {codename: {eq: "nav_project_phases"}}) {
+                                elements {
+                                child_items {
+                                    value {
+                                    ... on kontent_item_navigation_item {
+                                        elements {
+                                        content_item {
+                                            value {
+                                            ... on kontent_item_phase {
+                                                elements {
+                                                title {
+                                                    value
+                                                }
+                                                url {
+                                                    value
+                                                }
+                                                overview {
+                                                    value
+                                                }
+                                                icon {
+                                                    value {
+                                                    url
                                                     }
                                                 }
+                                                }
+                                            }
                                             }
                                         }
+                                        }
                                     }
-                                  }
+                                    }
+                                }
                                 }
                             }
                         }
@@ -89,17 +90,16 @@ class ProjectPhases extends React.Component
                 render={data => 
                     <ProjectPhasesContainer>
                         <ol>
-                            {data.allKenticoCloudItemNavigationItem.edges[0].node.elements.child_items
+                            {data.kontentItemNavigationItem.elements.child_items.value
                                 .map(item => {
-                                    return item.elements.content_item.map(phase => {
-                                        return (<PhaseIcon key={phase.elements.url.value} size="small" icon={phase.elements.icon.assets[0].url} url={phase.elements.url.value} title={phase.elements.title.value} overview={phase.elements.overview.value} />);
+                                    return item.elements.content_item.value.map(phase => {
+                                        return (<PhaseIcon key={phase.elements.url.value} size="small" icon={phase.elements.icon.value[0].url} url={phase.elements.url.value} title={phase.elements.title.value} overview={phase.elements.overview.value} />);
                                     })
                                 })}
                         </ol>
                     </ProjectPhasesContainer>
                 }
             />
-        )
     }
 }
 

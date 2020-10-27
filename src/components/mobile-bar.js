@@ -81,14 +81,14 @@ class MobileBar extends React.Component{
         return (
         <MobileBarContainer>
             <MenuButton>
-                <a href="javascript:;" title="Open menu" className="left-bar-button" onClick={this.props.onMenuButtonClick}>
+                <a title="Open menu" className="left-bar-button" onClick={this.props.onMenuButtonClick} href="#!">
                     <i className="fa fa-bars"></i>
                 </a>
             </MenuButton>
             <Search>
                 {!this.state.visible &&
                     <div>
-                        <a href="javascript:;" onClick={this.toggleVisibility} title="Search">
+                        <a onClick={this.toggleVisibility} title="Search" href="#!">
                             <i className="fa fa-search"></i>
                         </a>
                     </div>
@@ -97,7 +97,7 @@ class MobileBar extends React.Component{
                     <div>
                         <form action="/search" method="get">
                             <input type="text" name="s" ref={(input) => { if (input){ input.focus(); }}} />
-                            <a href="javascript:;" title="Close" onClick={this.toggleVisibility}>
+                            <a title="Close" onClick={this.toggleVisibility} href="#!">
                                 <i className="fa fa-times"></i>
                             </a>
                         </form>

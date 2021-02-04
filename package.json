@@ -12,7 +12,7 @@
     "@kentico/gatsby-kontent-components": "^6.0.0",
     "@kentico/gatsby-source-kontent": "^6.0.1",
     "babel-plugin-styled-components": "^1.11.1",
-    "gatsby": "^2.24.47",
+    "gatsby": "^2.27.3",
     "gatsby-inline-css": "^1.0.0-alpha11-alpha.f46304ad",
     "gatsby-plugin-google-tagmanager": "^2.3.11",
     "gatsby-plugin-manifest": "^2.4.23",

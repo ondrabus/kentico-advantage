@@ -24,6 +24,7 @@ img
 
 export default ({data}) => {
     const phase = data.kontentItemPhase;
+
     var addAnchors = function(text){
         var textAfter = text.replace(/<h2/g, (() => {
             var index = 0;
@@ -108,7 +109,6 @@ export default ({data}) => {
                     links={phase.elements.content.links}
                     linkedItems={phase.elements.content.modular_content}
                     resolveImage={image => {
-                      console.log(image);
                       return (
                         <img
                           src={image.url}
@@ -124,14 +124,19 @@ export default ({data}) => {
                       )
                     }}
                     resolveLinkedItem={linkedItem => {
+                      console.log(linkedItem);
                       if (linkedItem.system.type === 'phase')
                       {
                         return <React.Fragment>
                           <h2>
-                            <a href={linkedItem.elements.url.value}>{linkedItem.elements.title.value}</a>
+                            <Link to={'/' + linkedItem.elements.url.value} title={linkedItem.elements.title.value}>{linkedItem.elements.title.value}</Link>
                           </h2>
                           {!linkedItem.elements.overview.value !== '<p><br></p>' && <div dangerouslySetInnerHTML={{__html: linkedItem.elements.overview.value}}></div>}
                         </React.Fragment>
+                      }
+                      else if (linkedItem.system.type === 'scenario')
+                      {
+                        return <Scenarios data={[linkedItem]} />
                       }
                       
                       return <pre>{JSON.stringify(linkedItem, undefined, 2)}</pre>
@@ -160,7 +165,7 @@ export default ({data}) => {
 
 export const query = graphql`
          query($id: String!) {
-           kontentItemPhase(system: { id: { eq: $id } }) {
+           kontentItemPhase(id: { eq: $id }) {
              system { id }
              elements {
                title {
@@ -197,6 +202,21 @@ export const query = graphql`
                         value
                       }
                     }
+                  }
+                  ... on kontent_item_scenario {
+                    system {
+                      id
+                      codename
+                      type
+                    }
+                     elements {
+                       detail {
+                         value
+                       }
+                       title {
+                         value
+                       }
+                     }
                   }
                 }
                }

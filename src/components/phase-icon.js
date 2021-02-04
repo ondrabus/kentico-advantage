@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import * as style from '../styles'
+import { Link } from 'gatsby'
 
 const PhaseIconContainer = styled.li`
     display: block;
@@ -40,8 +41,6 @@ const PhaseIconContainer = styled.li`
     `}
 `;
 
-const LinkContainer = styled.a`
-`;
 const IconContainer = styled.span`
     display: block;
     float: left;
@@ -54,7 +53,7 @@ class PhaseIcon extends React.Component
     render(){
         return (
             <PhaseIconContainer>
-                <LinkContainer href={this.props.url} title={this.props.title}>
+                <Link to={this.props.url} title={this.props.title}>
                     <IconContainer>
                         <img
                             src={this.props.icon}
@@ -63,7 +62,7 @@ class PhaseIcon extends React.Component
                     </IconContainer>
                     <h3><span>{this.props.title}</span></h3>
                     <span dangerouslySetInnerHTML={{__html: this.props.overview}}></span>
-                </LinkContainer>
+                </Link>
             </PhaseIconContainer>)
     }
 }

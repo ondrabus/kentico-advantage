@@ -66,7 +66,7 @@ export default ({data}) => {
     }
 export const query = graphql`
     query($id: String!) {
-        allKontentItemPage(filter: {system: {id: {eq: $id}}}) {
+        allKontentItemPage(filter: {id: {eq: $id}}) {
     edges {
       node {
         elements {

@@ -159,13 +159,28 @@ class Menu extends React.Component
                           }
                         }
                       }
+                      pages: allKontentItem(filter: {system: {type: {eq: "page"}}}) {
+                        nodes {
+                          id
+                          ... on kontent_item_page {
+                            system { id }
+                            elements {
+                              url {
+                                value
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                     `}
                     render={data => {
                         let navigationItems = {};
                         data.navigationItems.nodes.forEach(item => navigationItems[item.id] = item);
                         let phases = {};
+                        let pages = {};
                         data.phases.nodes.forEach(item => phases[item.system.id] = item);
+                        data.pages.nodes.forEach(item => pages[item.system.id] = item);
 
                         let rootItem = data.navigationItems.nodes.find(n => n.elements.url.value === "~");
                         rootItem.children = rootItem.elements.child_items.value.map(i => navigationItems[i.id]);
@@ -188,8 +203,9 @@ class Menu extends React.Component
                           let item = menuItem.elements.title.value;
                           if (menuItem.elements.content_item.value.length > 0)
                           {
-                            let currentPhase = phases[menuItem.elements.content_item.value[0].system.id];
-                            item = <Link className={currentPhase.system.id === this.props.activePageId ? 'active' : ''} to={`/${currentPhase.elements.url.value}`} title={menuItem.elements.title.value}>{item}</Link>
+                            let currentDocumentId = menuItem.elements.content_item.value[0].system.id;
+                            let currentDocument = Object.keys(phases).includes(currentDocumentId) ? phases[currentDocumentId] : pages[currentDocumentId];
+                            item = <Link className={currentDocument.system.id === this.props.activePageId ? 'active' : ''} to={`/${currentDocument.elements.url.value}`} title={menuItem.elements.title.value}>{item}</Link>
                           }
                           return (<li key={menuItem.elements.url.value}>{item}{subMenu}</li>)
                         });
@@ -202,11 +218,11 @@ class Menu extends React.Component
                                         </a>
                                     </div>
                                     <header>
-                                        <a href="/">
+                                        <Link to="/">
                                             <img
                                                 src={withPrefix('/assets/img/kentico_rgb_small.png')}
                                                 alt="Kentico Advantage" />
-                                        </a>
+                                        </Link>
                                     </header>
                                     <nav>
                                         <ul>

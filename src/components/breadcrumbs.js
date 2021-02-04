@@ -43,6 +43,7 @@ const BreadcrumbsContainer = styled.nav`
 class Breadcrumbs extends React.Component
 {
     render(){
+      
         return (
             <StaticQuery 
                 query={graphql`
@@ -64,6 +65,19 @@ class Breadcrumbs extends React.Component
                   content_item {
                     value {
                       ... on kontent_item_phase {
+                        system {
+                          id
+                        }
+                        elements {
+                          title {
+                            value
+                          }
+                          url {
+                            value
+                          }
+                        }
+                      }
+                      ... on kontent_item_page {
                         system {
                           id
                         }
@@ -212,7 +226,12 @@ class Breadcrumbs extends React.Component
 
     findItem(items, contentItemId)
     {
-        var currentItem = items.filter(navItem => navItem.elements.content_item && Array.isArray(navItem.elements.content_item.value) && navItem.elements.content_item.value.length === 1 && navItem.elements.content_item.value[0].system.id === contentItemId);
+        console.log(items);
+        var currentItem = items.filter(navItem =>
+          navItem.elements.content_item &&
+          Array.isArray(navItem.elements.content_item.value) &&
+          navItem.elements.content_item.value.length === 1 &&
+          navItem.elements.content_item.value[0].system.id === contentItemId);
         if (currentItem.length === 1)
             return currentItem[0];
 

@@ -33,7 +33,6 @@ class TableOfContents extends React.Component
         var found = regex.exec(text);
 
         while (found != null) {
-            console.log(found[4]);
             headings.push(found[4]);
             found = regex.exec(text);
         }

@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import * as style from '../styles'
+import { StaticImage } from "gatsby-plugin-image"
 
 const JumbotronContainer = styled.div`
     position: relative;
@@ -19,11 +20,17 @@ const JumbotronContainer = styled.div`
     ${style.media.md`
         margin-top: 60px;
     `}
-    
-    &.jumbotron-homepage
+
+    .heroImage
     {
-        background-image: url("./assets/img/jumbotron/01.jpg");
-        background-size: cover;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+
+        img {
+            object-position: 0 0;
+        }
     }
 
     &.jumbotron-content-page
@@ -76,6 +83,7 @@ const JumbotronContainer = styled.div`
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        z-index: 1;
         
         ${style.media.sm`
             align-items: flex-start;
@@ -126,6 +134,16 @@ class Jumbotron extends React.Component
     render(){
         return (
         <JumbotronContainer className={this.props.className}>
+            
+            <StaticImage
+                className="heroImage"
+                src="../images/01.jpg"
+                alt="Hero image"
+                placeholder="blurred"
+                layout="fullWidth"
+
+                />
+
             {this.props.children ? this.props.children : 
                 this.props.className === 'jumbotron-homepage' ?
                     <section>
